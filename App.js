@@ -13,52 +13,23 @@ import {
   Alert,
   Platform,
   StatusBar,
+  Dimensions,
 } from 'react-native';
 
-export default function App() {
-  const handlePress = () =>
-    Alert.prompt('Title', 'message', (text) => console.log(text));
-  return (
-    <SafeAreaView style={styles.container}>
-      <Button
-        color="orange"
-        title="Click Me"
-        onPress={() =>
-          Alert.alert('My title', 'My message', [
-            {
-              text: 'Yes',
-              onPress: () => console.log('yes', StatusBar.currentHeight),
-            },
-            { text: 'No', onPress: () => console.log('no') },
-          ])
-        }
-      />
-      <Text onPress={handlePress}>Hello World {StatusBar.currentHeight}</Text>
-      <TouchableNativeFeedback onPress={handlePress}>
-        {/* <Image
-          blurRadius={1}
-          fadeDuration={1000}
-          source={{
-            width: 200,
-            height: 300,
-            uri: 'http://picsum.photos/200/300',
-          }}
-        /> */}
-        <View
-          style={{ width: 200, height: 70, backgroundColor: 'dodgerblue' }}
-        ></View>
-      </TouchableNativeFeedback>
+import WelcomeScreen from './app/screens/WelcomeScreen';
 
-      <StatusBar style="auto" />
-    </SafeAreaView>
-  );
+import { useDeviceOrientation } from '@react-native-community/hooks';
+import ViewImageScreen from './app/screens/ViewImageScreen';
+
+export default function App() {
+  return <ViewImageScreen />;
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'dodgerblue',
-    paddingTop: Platform.OS === 'android' ? 0 : 0,
+    // flex: 1,
+    // backgroundColor: 'dodgerblue',
+    // paddingTop: Platform.OS === 'android' ? 0 : 0,
     // alignItems: 'center',
     // justifyContent: 'center',
   },

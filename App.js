@@ -15,6 +15,7 @@ import {
   StatusBar,
   Dimensions,
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 import WelcomeScreen from './app/screens/WelcomeScreen';
 
@@ -22,7 +23,12 @@ import { useDeviceOrientation } from '@react-native-community/hooks';
 import ViewImageScreen from './app/screens/ViewImageScreen';
 
 export default function App() {
-  return <ViewImageScreen />;
+  return (
+    <NavigationContainer>
+      <WelcomeScreen />
+      <ViewImageScreen />
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({

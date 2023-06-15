@@ -17,7 +17,7 @@ import { addFood, removeFood } from '../redux/foods';
 
 import colors from '../config/colors';
 
-function EatScreen({ navigation, route }) {
+function PlayScreen({ navigation, route }) {
   // const DATA = [
   //   {
   //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EatScreen;
+export default PlayScreen;

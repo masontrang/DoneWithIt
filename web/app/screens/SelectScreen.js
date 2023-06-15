@@ -12,10 +12,16 @@ function SelectScreen({ navigation }) {
       >
         <Text style={styles.title}>Eat!</Text>
       </Pressable>
-      <Pressable style={styles.playButton}>
+      <Pressable
+        style={styles.playButton}
+        onPress={() => navigation.navigate('Play')}
+      >
         <Text style={styles.title}>Play!</Text>
       </Pressable>
-      <Pressable style={styles.goButton}>
+      <Pressable
+        style={styles.goButton}
+        onPress={() => navigation.navigate('Go')}
+      >
         <Text style={styles.title}>Go!</Text>
       </Pressable>
       <Button title="Setup" />

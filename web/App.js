@@ -28,6 +28,8 @@ import RegisterScreen from './app/screens/RegisterScreen';
 import LoginScreen from './app/screens/LoginScreen';
 import SelectScreen from './app/screens/SelectScreen';
 import EatScreen from './app/screens/EatScreen';
+import PlayScreen from './app/screens/PlayScreen';
+import GoScreen from './app/screens/GoScreen';
 import ResultScreen from './app/screens/ResultScreen';
 import AddItemScreen from './app/screens/AddItemScreen';
 
@@ -54,6 +56,16 @@ export default function App() {
           <Stack.Screen
             name="Eat"
             component={EatScreen}
+            // options={{ title: 'Choose' }}
+          />
+          <Stack.Screen
+            name="Play"
+            component={PlayScreen}
+            // options={{ title: 'Choose' }}
+          />
+          <Stack.Screen
+            name="Go"
+            component={GoScreen}
             // options={{ title: 'Choose' }}
           />
           <Stack.Screen

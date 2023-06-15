@@ -14,8 +14,7 @@ import { addFood } from '../redux/foods';
 function AddItemScreen({ navigation }) {
   const dispatch = useDispatch();
 
-  const [item, onChangeItem] = useState('Input Item Name');
-  const [number, onChangeNumber] = useState('');
+  const [item, onChangeItem] = useState('');
 
   return (
     <SafeAreaView>
@@ -27,7 +26,7 @@ function AddItemScreen({ navigation }) {
       <Button
         title="Add Item"
         onPress={() => {
-          dispatch(addFood({ title: item }));
+          dispatch(addFood({ title: item, id: Math.random(0, 1000) }));
           navigation.navigate('Eat', { newItem: item });
         }}
       />

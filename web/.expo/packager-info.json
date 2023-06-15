@@ -2,8 +2,8 @@
   "expoServerPort": 19000,
   "packagerPort": 19000,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://rn-3f7.anonymous.web.exp.direct",
+  "packagerNgrokUrl": "https://rn-3f7.anonymous.web.exp.direct",
+  "ngrokPid": 18889,
   "webpackServerPort": null
 }

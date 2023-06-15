@@ -17,12 +17,16 @@ const foodsSlice = createSlice({
   //   },
   // ],
   initialState: {
-    foods: [{ title: 'Burger' }, { title: 'Taco' }, { title: 'Pizza' }],
+    foods: [
+      { title: 'Burger', id: 1 },
+      { title: 'Taco', id: 2 },
+      { title: 'Pizza', id: 3 },
+    ],
   },
 
   reducers: {
     addFood: (state, action) => {
-      state.foods.push({ title: action.payload.title });
+      state.foods.push({ title: action.payload.title, id: action.payload.id });
     },
     removeFood: (state, action) => {
       state.foods.splice(

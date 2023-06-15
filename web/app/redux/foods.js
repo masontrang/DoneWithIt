@@ -18,15 +18,21 @@ const foodsSlice = createSlice({
   // ],
   initialState: {
     foods: [
-      { title: 'Burger', id: 1 },
-      { title: 'Taco', id: 2 },
-      { title: 'Pizza', id: 3 },
+      { title: 'Burger', id: 1, cuisine: 'american', cost: '$' },
+      { title: 'Taco', id: 2, cuisine: 'mexican', cost: '$' },
+      { title: 'Pizza', id: 3, cuisine: 'italian', cost: '$' },
+      { title: 'Sushi', id: 4, cuisine: 'japanese', cost: '$$$' },
     ],
   },
 
   reducers: {
     addFood: (state, action) => {
-      state.foods.push({ title: action.payload.title, id: action.payload.id });
+      state.foods.push({
+        title: action.payload.title,
+        id: action.payload.id,
+        cuisine: action.payload.cuisine,
+        cost: action.payload.cost,
+      });
     },
     removeFood: (state, action) => {
       state.foods.splice(

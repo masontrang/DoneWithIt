@@ -42,9 +42,9 @@ function EatScreen({ navigation, route }) {
   //   dispatch(addFood({ title: newItem }));
   // }, [newItem]);
 
-  type ItemProps = { title: string };
+  type ItemProps = { title: string, cuisine: string };
 
-  const Item = ({ title }: ItemProps) => (
+  const Item = ({ title, cuisine, cost }: ItemProps) => (
     <Pressable
       style={styles.item}
       onPress={() => {
@@ -52,6 +52,10 @@ function EatScreen({ navigation, route }) {
       }}
     >
       <Text style={styles.title}>{title}</Text>
+      <View style={styles.detailsContainer}>
+        <Text style={styles.details}>{cuisine}</Text>
+        <Text style={styles.details}>{cost}</Text>
+      </View>
     </Pressable>
   );
   return (
@@ -59,7 +63,9 @@ function EatScreen({ navigation, route }) {
       <View>
         <FlatList
           data={foods.foods}
-          renderItem={({ item }) => <Item title={item.title} />}
+          renderItem={({ item }) => (
+            <Item title={item.title} cuisine={item.cuisine} cost={item.cost} />
+          )}
           keyExtractor={(item) => item.id}
         />
         {/* <Text>{newItem}</Text> */}
@@ -97,6 +103,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+  },
+  details: { fontSize: 20, color: 'white' },
+  detailsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 

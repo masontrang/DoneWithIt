@@ -12,6 +12,8 @@ import {
   Modal,
 } from 'react-native';
 
+import { useSelector } from 'react-redux';
+
 import colors from '../config/colors';
 
 function EatScreen({ navigation, route }) {
@@ -30,7 +32,9 @@ function EatScreen({ navigation, route }) {
     },
   ];
 
-  const { newItem } = route.params;
+  const foods = useSelector((state) => state.foods);
+
+  const { newItem } = route.params || '';
 
   useEffect(() => {
     DATA.push({ id: '123', title: newItem });
@@ -47,7 +51,7 @@ function EatScreen({ navigation, route }) {
     <SafeAreaView style={styles.container}>
       <View>
         <FlatList
-          data={DATA}
+          DATA={foods}
           renderItem={({ item }) => <Item title={item.title} />}
           keyExtractor={(item) => item.id}
         />
@@ -55,7 +59,8 @@ function EatScreen({ navigation, route }) {
         <Button
           title="Add Item"
           onPress={() => {
-            const result = DATA[Math.floor(Math.random() * DATA.length)].title;
+            const result =
+              foods[Math.floor(Math.random() * foods.length)].title;
             navigation.navigate('Add Item', { result });
           }}
         />
@@ -64,7 +69,7 @@ function EatScreen({ navigation, route }) {
       <Button
         title="Decide!"
         onPress={() => {
-          const result = DATA[Math.floor(Math.random() * DATA.length)].title;
+          const result = foods[Math.floor(Math.random() * foods.length)].title;
           navigation.navigate('Result', { result });
         }}
       />

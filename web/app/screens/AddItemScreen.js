@@ -8,7 +8,12 @@ import {
   Button,
 } from 'react-native';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { addFood } from '../redux/foods';
+
 function AddItemScreen({ navigation }) {
+  const dispatch = useDispatch();
+
   const [item, onChangeItem] = useState('Input Item Name');
   const [number, onChangeNumber] = useState('');
 
@@ -22,6 +27,7 @@ function AddItemScreen({ navigation }) {
       <Button
         title="Add Item"
         onPress={() => {
+          dispatch(addFood({ title: item }));
           navigation.navigate('Eat', { newItem: item });
         }}
       />

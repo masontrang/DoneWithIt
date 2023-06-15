@@ -12,33 +12,35 @@ import {
   Modal,
 } from 'react-native';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addFood } from '../redux/foods';
 
 import colors from '../config/colors';
 
 function EatScreen({ navigation, route }) {
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'Burger',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Taco',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Pizza',
-    },
-  ];
-
+  // const DATA = [
+  //   {
+  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+  //     title: 'Burger',
+  //   },
+  //   {
+  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+  //     title: 'Taco',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+  //     title: 'Pizza',
+  //   },
+  // ];
+  const dispatch = useDispatch();
   const foods = useSelector((state) => state.foods);
+  console.log('foods', foods.foods);
 
   const { newItem } = route.params || '';
 
-  useEffect(() => {
-    DATA.push({ id: '123', title: newItem });
-  }, [newItem]);
+  // useEffect(() => {
+  //   dispatch(addFood({ title: newItem }));
+  // }, [newItem]);
 
   type ItemProps = { title: string };
 
@@ -51,17 +53,15 @@ function EatScreen({ navigation, route }) {
     <SafeAreaView style={styles.container}>
       <View>
         <FlatList
-          DATA={foods}
+          data={foods.foods}
           renderItem={({ item }) => <Item title={item.title} />}
           keyExtractor={(item) => item.id}
         />
-        <Text>{newItem}</Text>
+        {/* <Text>{newItem}</Text> */}
         <Button
           title="Add Item"
           onPress={() => {
-            const result =
-              foods[Math.floor(Math.random() * foods.length)].title;
-            navigation.navigate('Add Item', { result });
+            navigation.navigate('Add Item');
           }}
         />
       </View>
@@ -69,7 +69,8 @@ function EatScreen({ navigation, route }) {
       <Button
         title="Decide!"
         onPress={() => {
-          const result = foods[Math.floor(Math.random() * foods.length)].title;
+          const result =
+            foods.foods[Math.floor(Math.random() * foods.foods.length)].title;
           navigation.navigate('Result', { result });
         }}
       />

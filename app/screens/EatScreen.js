@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,7 @@ import {
 
 import colors from '../config/colors';
 
-function EatScreen({ navigation }) {
+function EatScreen({ navigation, route }) {
   const DATA = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -30,6 +30,12 @@ function EatScreen({ navigation }) {
     },
   ];
 
+  const { newItem } = route.params;
+
+  useEffect(() => {
+    DATA.push({ id: '123', title: newItem });
+  }, [newItem]);
+
   type ItemProps = { title: string };
 
   const Item = ({ title }: ItemProps) => (
@@ -39,11 +45,21 @@ function EatScreen({ navigation }) {
   );
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        renderItem={({ item }) => <Item title={item.title} />}
-        keyExtractor={(item) => item.id}
-      />
+      <View>
+        <FlatList
+          data={DATA}
+          renderItem={({ item }) => <Item title={item.title} />}
+          keyExtractor={(item) => item.id}
+        />
+        <Text>{newItem}</Text>
+        <Button
+          title="Add Item"
+          onPress={() => {
+            const result = DATA[Math.floor(Math.random() * DATA.length)].title;
+            navigation.navigate('Add Item', { result });
+          }}
+        />
+      </View>
 
       <Button
         title="Decide!"
@@ -59,6 +75,7 @@ function EatScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {

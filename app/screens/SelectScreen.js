@@ -10,13 +10,13 @@ function SelectScreen({ navigation }) {
         style={styles.eatButton}
         onPress={() => navigation.navigate('Eat')}
       >
-        <Text>Eat!</Text>
+        <Text style={styles.title}>Eat!</Text>
       </Pressable>
       <Pressable style={styles.playButton}>
-        <Text>Play!</Text>
+        <Text style={styles.title}>Play!</Text>
       </Pressable>
       <Pressable style={styles.goButton}>
-        <Text>Go!</Text>
+        <Text style={styles.title}>Go!</Text>
       </Pressable>
       <Button title="Setup" />
     </View>
@@ -49,5 +49,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 10,
   },
+  title: { fontSize: 32 },
 });
 export default SelectScreen;

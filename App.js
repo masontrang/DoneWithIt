@@ -26,6 +26,7 @@ import LoginScreen from './app/screens/LoginScreen';
 import SelectScreen from './app/screens/SelectScreen';
 import EatScreen from './app/screens/EatScreen';
 import ResultScreen from './app/screens/ResultScreen';
+import AddItemScreen from './app/screens/AddItemScreen';
 
 import { useDeviceOrientation } from '@react-native-community/hooks';
 
@@ -49,6 +50,11 @@ export default function App() {
         <Stack.Screen
           name="Eat"
           component={EatScreen}
+          // options={{ title: 'Choose' }}
+        />
+        <Stack.Screen
+          name="Add Item"
+          component={AddItemScreen}
           // options={{ title: 'Choose' }}
         />
         <Stack.Screen

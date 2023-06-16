@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addFood, removeFood } from '../redux/foods';
+import { addFood, removeFood, updateFilter } from '../redux/foods';
 
 import colors from '../config/colors';
 
@@ -34,9 +34,19 @@ function EatScreen({ navigation, route }) {
   // ];
   const dispatch = useDispatch();
   const foods = useSelector((state) => state.foods);
+  const unique = [...new Set(foods.foods.map((obj) => obj.cuisine))];
+
+  const filters = useSelector((state) => state.filters);
   console.log('foods', foods.foods);
+  console.log('filtersssss', foods.filters);
+  const filteredFoods = [];
 
   const { newItem } = route.params || '';
+
+  useEffect(() => {
+    dispatch(updateFilter([...unique]));
+    filteredFoods = foods.filter((food) => filters.includes(food.cuisine));
+  }, []);
 
   // useEffect(() => {
   //   dispatch(addFood({ title: newItem }));
@@ -60,9 +70,9 @@ function EatScreen({ navigation, route }) {
   );
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <View style={{ maxHeight: '90%' }}>
         <FlatList
-          data={foods.foods}
+          data={filteredFoods}
           renderItem={({ item }) => (
             <Item title={item.title} cuisine={item.cuisine} cost={item.cost} />
           )}

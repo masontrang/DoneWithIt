@@ -23,6 +23,7 @@ const foodsSlice = createSlice({
       { title: 'Pizza', id: 3, cuisine: 'italian', cost: '$' },
       { title: 'Sushi', id: 4, cuisine: 'japanese', cost: '$$$' },
     ],
+    filters: ['test'],
   },
 
   reducers: {
@@ -40,9 +41,13 @@ const foodsSlice = createSlice({
         1
       );
     },
+    updateFilter: (state, action) => {
+      state.filters = action.payload;
+    },
   },
 });
 
 export const addFood = foodsSlice.actions.addFood;
 export const removeFood = foodsSlice.actions.removeFood;
+export const updateFilter = foodsSlice.actions.updateFilter;
 export default foodsSlice.reducer;

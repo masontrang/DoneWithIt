@@ -15,7 +15,7 @@ import {
   StatusBar,
   Dimensions,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -32,6 +32,7 @@ import PlayScreen from './app/screens/PlayScreen';
 import GoScreen from './app/screens/GoScreen';
 import ResultScreen from './app/screens/ResultScreen';
 import AddItemScreen from './app/screens/AddItemScreen';
+import EatFiltersScreen from './app/screens/EatFiltersScreen';
 
 import { useDeviceOrientation } from '@react-native-community/hooks';
 
@@ -43,6 +44,21 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
+            name="Eat"
+            component={EatScreen}
+            options={{
+              headerRight: () => {
+                const navigation = useNavigation();
+                return (
+                  <Button
+                    onPress={() => navigation.navigate('EatFilters')}
+                    title="Filters"
+                  />
+                );
+              },
+            }}
+          />
+          <Stack.Screen
             name="Home"
             component={WelcomeScreen}
             options={{ headerShown: false }}
@@ -53,9 +69,24 @@ export default function App() {
             component={SelectScreen}
             options={{ title: 'Category Select' }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="Eat"
             component={EatScreen}
+            options={{
+              headerRight: () => {
+                const navigation = useNavigation();
+                return (
+                  <Button
+                    onPress={() => navigation.navigate('EatFilters')}
+                    title="Filters"
+                  />
+                );
+              },
+            }}
+          /> */}
+          <Stack.Screen
+            name="EatFilters"
+            component={EatFiltersScreen}
             // options={{ title: 'Choose' }}
           />
           <Stack.Screen
